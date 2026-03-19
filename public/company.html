@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>会社概要 — rayline</title>
+    <link rel="icon" href="./img/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --indigo: #6366f1;
+        --indigo-l: #818cf8;
+        --indigo-d: #4338ca;
+        --amber: #f59e0b;
+        --amber-l: #fcd34d;
+        --violet: #8b5cf6;
+        --bg: #070712;
+        --bg2: #0d0d1f;
+        --glass: rgba(255, 255, 255, 0.035);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --indigo-glow: rgba(99, 102, 241, 0.15);
+        --indigo-border: rgba(99, 102, 241, 0.22);
+        --text: #eeeeff;
+        --muted: rgba(238, 238, 255, 0.48);
+        --dim: rgba(238, 238, 255, 0.24);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 9998;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+        opacity: 0.04;
+      }
+
+      .mesh {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(110px);
+      }
+      .blob-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(#6366f1, transparent 65%);
+        top: -100px;
+        left: -150px;
+        opacity: 0.18;
+        animation: f1 26s ease-in-out infinite;
+      }
+      .blob-2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(#f59e0b, transparent 65%);
+        top: 50%;
+        right: -100px;
+        opacity: 0.1;
+        animation: f2 22s ease-in-out infinite;
+      }
+      @keyframes f1 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(30px, 40px);
+        }
+      }
+      @keyframes f2 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-30px, -20px);
+        }
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 52px;
+        height: 68px;
+        background: rgba(7, 7, 18, 0.7);
+        backdrop-filter: blur(24px) saturate(180%);
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .logo {
+        font-family: "Outfit", sans-serif;
+        font-weight: 800;
+        font-size: 20px;
+        text-decoration: none;
+        letter-spacing: -0.3px;
+      }
+      .logo .rw {
+        background: linear-gradient(110deg, #fff 40%, var(--indigo-l));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .logo .works {
+        -webkit-text-fill-color: var(--amber);
+      }
+      .nav-links {
+        display: flex;
+        gap: 8px;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--muted);
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+        background: var(--glass);
+      }
+      .nav-links a.active {
+        color: var(--text);
+      }
+      .nav-pill {
+        background: linear-gradient(
+          135deg,
+          var(--indigo),
+          var(--violet)
+        ) !important;
+        color: #fff !important;
+        font-weight: 600 !important;
+        padding: 9px 22px !important;
+        border-radius: 100px !important;
+        transition:
+          box-shadow 0.3s,
+          transform 0.2s !important;
+      }
+      .nav-pill:hover {
+        box-shadow: 0 0 32px rgba(99, 102, 241, 0.5) !important;
+        transform: translateY(-1px) !important;
+        background: none !important;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      /* PAGE HERO */
+      .page-hero {
+        position: relative;
+        z-index: 1;
+        padding: 160px 52px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--indigo-l);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.25);
+        border-radius: 6px;
+        padding: 6px 14px;
+        margin-bottom: 28px;
+        animation: fadeUp 0.7s 0.1s ease both;
+      }
+      .eyebrow-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--amber);
+        box-shadow: 0 0 6px var(--amber);
+        animation: blink 2s ease infinite;
+      }
+      .page-hero h1 {
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(52px, 6vw, 88px);
+        font-weight: 800;
+        letter-spacing: -3px;
+        line-height: 0.95;
+        margin-bottom: 24px;
+        animation: fadeUp 0.8s 0.2s ease both;
+      }
+      .page-hero-desc {
+        font-size: 17px;
+        color: var(--muted);
+        line-height: 1.75;
+        animation: fadeUp 0.8s 0.35s ease both;
+      }
+
+      .hero-img-right {
+        animation: fadeUp 0.9s 0.3s ease both;
+      }
+      .hero-img-right img {
+        width: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+        aspect-ratio: 4/3;
+        border: 1px solid var(--glass-border);
+        filter: brightness(0.8) saturate(1.1);
+        display: block;
+      }
+
+      /* SECTION */
+      .section {
+        position: relative;
+        z-index: 1;
+        padding: 80px 0 100px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 52px;
+      }
+      .section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--amber);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .section-tag::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 1px;
+        background: var(--amber);
+      }
+      .section-h {
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(32px, 3.5vw, 52px);
+        font-weight: 800;
+        letter-spacing: -2px;
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+
+      /* COMPANY TABLE */
+      .company-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+        margin-top: 60px;
+      }
+      .company-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .company-table tr {
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .company-table tr:last-child {
+        border-bottom: none;
+      }
+      .company-table th {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--dim);
+        letter-spacing: 0.08em;
+        text-align: left;
+        padding: 20px 0 20px 0;
+        width: 36%;
+        font-family: "JetBrains Mono", monospace;
+        vertical-align: top;
+        padding-right: 20px;
+      }
+      .company-table td {
+        font-size: 15px;
+        color: var(--text);
+        padding: 20px 0;
+        line-height: 1.65;
+        vertical-align: top;
+      }
+      .company-table td small {
+        display: block;
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .company-side {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* Map card */
+      .map-card {
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--glass-border);
+        background: var(--bg2);
+      }
+      .map-embed {
+        width: 100%;
+        height: 220px;
+        display: block;
+        border: none;
+      }
+      .map-info {
+        padding: 20px 24px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .map-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: rgba(99, 102, 241, 0.15);
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .map-text {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .map-text strong {
+        display: block;
+        font-size: 14px;
+        color: var(--text);
+        margin-bottom: 2px;
+      }
+
+      /* Rep card */
+      .rep-card {
+        background: var(--bg2);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 28px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+      .rep-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--indigo), var(--violet));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        flex-shrink: 0;
+        border: 2px solid rgba(99, 102, 241, 0.3);
+      }
+      .rep-name {
+        font-family: "Outfit", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        margin-bottom: 4px;
+      }
+      .rep-title {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* Mission */
+      .mission-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+      }
+      .mission-card {
+        background: var(--bg2);
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        padding: 28px;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .mission-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(99, 102, 241, 0.1),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .mission-card:hover {
+        border-color: var(--indigo-border);
+        transform: translateY(-3px);
+      }
+      .mission-card:hover::before {
+        opacity: 1;
+      }
+      .m-icon {
+        font-size: 28px;
+        margin-bottom: 16px;
+        display: block;
+      }
+      .mission-card h4 {
+        font-family: "Outfit", sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        margin-bottom: 8px;
+      }
+      .mission-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* PHOTO ROW */
+      .photo-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 14px;
+        margin-top: 60px;
+      }
+      .photo-row-item {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--glass-border);
+      }
+      .photo-row-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        aspect-ratio: 4/3;
+        filter: brightness(0.75) saturate(1.15);
+        transition:
+          transform 0.5s,
+          filter 0.3s;
+      }
+      .photo-row-item:hover img {
+        transform: scale(1.05);
+        filter: brightness(0.9) saturate(1.25);
+      }
+
+      /* CONTACT */
+      .contact-section {
+        position: relative;
+        z-index: 1;
+        padding: 80px 0 120px;
+      }
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .contact-info {
+        position: sticky;
+        top: 100px;
+      }
+      .contact-info h2 {
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(36px, 4vw, 58px);
+        font-weight: 800;
+        letter-spacing: -2px;
+        line-height: 1;
+        margin-bottom: 20px;
+      }
+      .contact-info p {
+        font-size: 16px;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 40px;
+      }
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .cd-item {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .cd-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--bg2);
+        border: 1px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        flex-shrink: 0;
+      }
+      .cd-val {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .cd-label {
+        font-size: 12px;
+        color: var(--dim);
+      }
+
+      /* FORM */
+      .contact-form {
+        background: var(--bg2);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 44px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--glass-border);
+        border-radius: 10px;
+        padding: 13px 16px;
+        font-size: 14px;
+        font-family: "DM Sans", sans-serif;
+        color: var(--text);
+        outline: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+        width: 100%;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        border-color: var(--indigo-border);
+        background: rgba(99, 102, 241, 0.05);
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: var(--dim);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+        line-height: 1.6;
+      }
+      .form-group select option {
+        background: #1a1a2e;
+        color: var(--text);
+      }
+      .btn-submit {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: linear-gradient(135deg, var(--indigo), var(--violet));
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 16px;
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 28px rgba(99, 102, 241, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        font-family: "DM Sans", sans-serif;
+      }
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 40px rgba(99, 102, 241, 0.6);
+      }
+
+      /* FOOTER */
+      footer {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid var(--glass-border);
+        padding: 48px 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .foot-logo {
+        font-family: "Outfit", sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .foot-logo .rw {
+        background: linear-gradient(110deg, #fff 40%, var(--indigo-l));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .foot-logo .works {
+        -webkit-text-fill-color: var(--amber);
+      }
+      .foot-links {
+        display: flex;
+        gap: 6px;
+      }
+      .foot-links a {
+        font-size: 13px;
+        color: var(--dim);
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .foot-links a:hover {
+        color: var(--muted);
+        background: var(--glass);
+      }
+      .foot-copy {
+        font-size: 12px;
+        color: var(--dim);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 960px) {
+        nav {
+          padding: 0 24px;
+        }
+        .container {
+          padding: 0 24px;
+        }
+        .page-hero {
+          grid-template-columns: 1fr;
+          padding: 120px 24px 60px;
+          gap: 40px;
+        }
+        .hero-img-right {
+          display: none;
+        }
+        .company-layout {
+          grid-template-columns: 1fr;
+        }
+        .mission-grid {
+          grid-template-columns: 1fr;
+        }
+        .photo-row {
+          grid-template-columns: 1fr;
+        }
+        .contact-wrap {
+          grid-template-columns: 1fr;
+        }
+        .contact-info {
+          position: static;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 20px;
+          text-align: center;
+          padding: 32px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mesh">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+      <a href="index.html" class="logo"
+        ><span class="rw">ray</span><span class="works">line</span></a
+      >
+      <ul class="nav-links">
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="service.html">サービス</a></li>
+        <li><a href="company.html" class="active">会社概要</a></li>
+        <li><a href="#contact" class="nav-pill">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div>
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Company</div>
+        <h1>テクノロジーで<br />世界を変える<br />チーム。</h1>
+        <p class="page-hero-desc">
+          埼玉・大宮から、日本と世界に向けて最先端のITソリューションを届ける。
+          それがレイラインの使命です。
+        </p>
+      </div>
+      <div class="hero-img-right">
+        <img
+          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop"
+          alt="オフィス"
+        />
+      </div>
+    </div>
+
+    <!-- COMPANY INFO -->
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="section-tag reveal">会社情報</div>
+        <h2 class="section-h reveal">Company Profile</h2>
+
+        <div class="company-layout reveal">
+          <table class="company-table">
+            <tr>
+              <th>社名</th>
+              <td>株式会社レイライン<small>rayline LLC</small></td>
+            </tr>
+            <tr>
+              <th>代表</th>
+              <td>峪 俊希<small>Toshiki Tani</small></td>
+            </tr>
+            <tr>
+              <th>所在地</th>
+              <td>〒330-0802<br />石川県金沢市増泉2丁目7番11号</td>
+            </tr>
+            <tr>
+              <th>事業内容</th>
+              <td>
+                コンピューターのソフトウェアおよびハードウェアの企画・研究・開発・設計・製造・販売・リース賃貸および輸出入並びにそれらに関するコンサルティング業務
+                <small style="margin-top: 8px"
+                  >前号に付帯関連する一切の事業</small
+                >
+              </td>
+            </tr>
+            <tr>
+              <th>対応言語</th>
+              <td>日本語 / English</td>
+            </tr>
+            <tr>
+              <th>メール</th>
+              <td>toshiki.tani@rayline.org</td>
+            </tr>
+          </table>
+
+          <div class="company-side">
+            <!-- Map -->
+            <div class="map-card">
+              <iframe
+                class="map-embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3228.0!2d139.6280!3d35.9060!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601918d3f9a31a9d%3A0x0!2z5aSn546L5Y-w44Gr44GV44GE44Gf44G_5biC5aSn5a6244Kz5a2m55S677yS-93-2!5e0!3m2!1sja!2sjp!4v1"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              >
+              </iframe>
+              <div class="map-info">
+                <div class="map-icon">📍</div>
+                <div class="map-text">
+                  <strong>金沢オフィス</strong>
+                  石川県金沢市増泉2丁目7番11号<br />
+                </div>
+              </div>
+            </div>
+
+            <!-- Rep -->
+            <div class="rep-card">
+              <div class="rep-avatar">👤</div>
+              <div>
+                <div class="rep-name">峪 俊希</div>
+                <div class="rep-title">代表 / CEO — rayline LLC</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="section-tag reveal">Mission & Values</div>
+        <h2 class="section-h reveal">私たちの価値観</h2>
+        <div class="mission-grid reveal">
+          <div class="mission-card">
+            <span class="m-icon">🚀</span>
+            <h4>スピードと品質の両立</h4>
+            <p>
+              速く動くことと、正しく動くことは矛盾しない。自動化と規律あるプロセスで両方を実現します。
+            </p>
+          </div>
+          <div class="mission-card">
+            <span class="m-icon">🌏</span>
+            <h4>ローカル発、グローバル品質</h4>
+            <p>
+              埼玉を拠点としながら、世界標準のエンジニアリングと製品を届けることにこだわります。
+            </p>
+          </div>
+          <div class="mission-card">
+            <span class="m-icon">🤝</span>
+            <h4>長期パートナーシップ</h4>
+            <p>
+              単発の受注ではなく、クライアントのビジネスを深く理解し、共に成長する関係を大切にします。
+            </p>
+          </div>
+        </div>
+
+        <!-- Photo row -->
+        <div class="photo-row reveal">
+          <div class="photo-row-item">
+            <img
+              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80&auto=format&fit=crop"
+              alt="チームワーク"
+            />
+          </div>
+          <div class="photo-row-item">
+            <img
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&q=80&auto=format&fit=crop"
+              alt="開発"
+            />
+          </div>
+          <div class="photo-row-item">
+            <img
+              src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=500&q=80&auto=format&fit=crop"
+              alt="ミーティング"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="contact-info reveal">
+            <div class="section-tag">Contact</div>
+            <h2>お気軽に<br />ご相談を。</h2>
+            <p>
+              プロジェクトのご依頼、技術的なご質問、採用に関するお問い合わせなど、何でもお気軽にどうぞ。通常2営業日以内にご返信します。
+            </p>
+            <div class="contact-details">
+              <div class="cd-item">
+                <div class="cd-icon">📧</div>
+                <div>
+                  <div class="cd-label">メールアドレス</div>
+                  <div class="cd-val">toshiki.tani@rayline.org</div>
+                </div>
+              </div>
+              <div class="cd-item">
+                <div class="cd-icon">📍</div>
+                <div>
+                  <div class="cd-label">所在地</div>
+                  <div class="cd-val">石川県金沢市増泉2丁目7番11号</div>
+                </div>
+              </div>
+              <div class="cd-item">
+                <div class="cd-icon">⏰</div>
+                <div>
+                  <div class="cd-label">営業時間</div>
+                  <div class="cd-val">月〜金 10:00 – 18:00</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form reveal">
+            <div class="form-row">
+              <div class="form-group">
+                <label>お名前 *</label>
+                <input type="text" placeholder="山田 太郎" />
+              </div>
+              <div class="form-group">
+                <label>会社名</label>
+                <input type="text" placeholder="株式会社〇〇" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>メールアドレス *</label>
+              <input type="email" placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label>お問い合わせ種別</label>
+              <select>
+                <option value="">選択してください</option>
+                <option>ソフトウェア開発のご依頼</option>
+                <option>ハードウェア設計・製造</option>
+                <option>ITコンサルティング</option>
+                <option>輸出入サポート</option>
+                <option>採用・パートナーシップ</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>ご相談内容 *</label>
+              <textarea
+                placeholder="プロジェクトの概要、ご予算、ご希望スケジュールなど、お気軽にご記入ください。"
+              ></textarea>
+            </div>
+            <button class="btn-submit" onclick="handleSubmit(this)">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              送信する
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <a href="index.html" class="foot-logo"
+        ><span class="rw">ray</span><span class="works">line</span></a
+      >
+      <p class="foot-copy">© 2026 レイライン（rayline LLC）</p>
+      <div class="foot-links">
+        <a href="index.html">ホーム</a>
+        <a href="service.html">サービス</a>
+        <a href="company.html">会社概要</a>
+      </div>
+    </footer>
+
+    <script>
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+              setTimeout(() => e.target.classList.add("in"), i * 80);
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      function handleSubmit(btn) {
+        const orig = btn.innerHTML;
+        btn.innerHTML =
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 送信しました！';
+        btn.style.background = "linear-gradient(135deg,#059669,#10B981)";
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.style.background = "";
+          btn.disabled = false;
+        }, 4000);
+      }
+    </script>
+  </body>
+</html>
